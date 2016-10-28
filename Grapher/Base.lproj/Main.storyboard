@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="14F1909" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Grapher" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +16,90 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="je8-d9-wpV">
+                                <rect key="frame" x="0.0" y="20" width="600" height="243"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="lcM-4x-QVX">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="243"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nd5-Vk-qaB" customClass="GraphView" customModule="Grapher" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="600" height="243"/>
+                                                <color key="backgroundColor" red="0.75686274509803919" green="0.75686274509803919" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="axes_color">
+                                                        <color key="value" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="margin">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="plot_color">
+                                                        <color key="value" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="showAxes" value="NO"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="top" secondItem="lcM-4x-QVX" secondAttribute="topMargin" id="6td-rS-9XW"/>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="leading" secondItem="lcM-4x-QVX" secondAttribute="leading" id="7EI-8K-1Ha"/>
+                                            <constraint firstAttribute="trailing" secondItem="nd5-Vk-qaB" secondAttribute="trailing" id="Ca2-CE-10A"/>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="leading" secondItem="lcM-4x-QVX" secondAttribute="leading" id="G0e-rl-8Ed"/>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="leading" secondItem="lcM-4x-QVX" secondAttribute="leading" id="Lnn-37-RbI"/>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="top" secondItem="lcM-4x-QVX" secondAttribute="top" id="MpM-PC-hUE"/>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="top" secondItem="lcM-4x-QVX" secondAttribute="top" id="N6a-hy-MWH"/>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="leading" secondItem="lcM-4x-QVX" secondAttribute="leadingMargin" id="OwH-75-xqb"/>
+                                            <constraint firstAttribute="trailing" secondItem="nd5-Vk-qaB" secondAttribute="trailing" id="RKV-GF-IWq"/>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="centerY" secondItem="lcM-4x-QVX" secondAttribute="centerY" id="VCn-xM-aHg"/>
+                                            <constraint firstAttribute="trailing" secondItem="nd5-Vk-qaB" secondAttribute="trailing" id="W8W-ah-wRp"/>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="bottom" secondItem="lcM-4x-QVX" secondAttribute="bottomMargin" id="ZjR-1s-95Q"/>
+                                            <constraint firstAttribute="bottom" secondItem="nd5-Vk-qaB" secondAttribute="bottom" id="bdw-RP-7g3"/>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="top" secondItem="lcM-4x-QVX" secondAttribute="top" id="evk-tN-kv3"/>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="centerX" secondItem="lcM-4x-QVX" secondAttribute="centerX" id="qDN-yf-fHX"/>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="leading" secondItem="lcM-4x-QVX" secondAttribute="leading" id="rpc-z4-SQp"/>
+                                            <constraint firstAttribute="bottom" secondItem="nd5-Vk-qaB" secondAttribute="bottom" id="t90-1S-1KM"/>
+                                            <constraint firstAttribute="bottom" secondItem="nd5-Vk-qaB" secondAttribute="bottom" id="y06-do-ojV"/>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="top" secondItem="lcM-4x-QVX" secondAttribute="top" id="zpE-Yl-f6y"/>
+                                            <constraint firstItem="nd5-Vk-qaB" firstAttribute="trailing" secondItem="lcM-4x-QVX" secondAttribute="trailingMargin" id="zur-Bp-WTY"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="top" secondItem="je8-d9-wpV" secondAttribute="top" id="5gO-L4-lFu"/>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="leading" secondItem="je8-d9-wpV" secondAttribute="leading" id="9Jy-qC-UaQ"/>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="top" secondItem="je8-d9-wpV" secondAttribute="topMargin" id="IIv-gf-eIy"/>
+                                    <constraint firstAttribute="bottom" secondItem="lcM-4x-QVX" secondAttribute="bottom" id="Jex-uS-XpL"/>
+                                    <constraint firstAttribute="bottom" secondItem="lcM-4x-QVX" secondAttribute="bottom" id="Nbh-SD-hjw"/>
+                                    <constraint firstAttribute="trailing" secondItem="lcM-4x-QVX" secondAttribute="trailing" id="SPN-P1-6yr"/>
+                                    <constraint firstAttribute="trailing" secondItem="lcM-4x-QVX" secondAttribute="trailing" id="WN5-FN-pVo"/>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="top" secondItem="je8-d9-wpV" secondAttribute="top" id="aDz-G6-a4x"/>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="leading" secondItem="je8-d9-wpV" secondAttribute="leadingMargin" id="aOa-ZW-PKP"/>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="centerY" secondItem="je8-d9-wpV" secondAttribute="centerY" id="crF-Wq-8hS"/>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="leading" secondItem="je8-d9-wpV" secondAttribute="leading" id="dev-lF-azf"/>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="leading" secondItem="je8-d9-wpV" secondAttribute="leading" id="elJ-xD-wP9"/>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="top" secondItem="je8-d9-wpV" secondAttribute="top" id="fQw-GS-teC"/>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="leading" secondItem="je8-d9-wpV" secondAttribute="leading" id="fwh-cO-5cW"/>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="bottom" secondItem="je8-d9-wpV" secondAttribute="bottomMargin" id="ggZ-1e-nNV"/>
+                                    <constraint firstAttribute="bottom" secondItem="lcM-4x-QVX" secondAttribute="bottom" id="n3J-Cn-aal"/>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="centerX" secondItem="je8-d9-wpV" secondAttribute="centerX" id="oxY-qC-EYS"/>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="trailing" secondItem="je8-d9-wpV" secondAttribute="trailingMargin" id="pMT-iU-WUr"/>
+                                    <constraint firstAttribute="trailing" secondItem="lcM-4x-QVX" secondAttribute="trailing" id="pgQ-W3-DjW"/>
+                                    <constraint firstItem="lcM-4x-QVX" firstAttribute="top" secondItem="je8-d9-wpV" secondAttribute="top" id="qnx-VM-JTb"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="je8-d9-wpV" secondAttribute="bottom" constant="337" id="8cA-IC-OrZ"/>
+                            <constraint firstAttribute="trailing" secondItem="je8-d9-wpV" secondAttribute="trailing" id="YqL-Vj-Yr8"/>
+                            <constraint firstItem="je8-d9-wpV" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="ZWS-Ph-f1u"/>
+                            <constraint firstItem="je8-d9-wpV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="jkt-QK-uum"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="139" y="136"/>
         </scene>
     </scenes>
 </document>

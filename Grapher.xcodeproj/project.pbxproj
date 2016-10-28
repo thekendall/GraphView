@@ -13,6 +13,7 @@
 		EB6B7B341CAE38CA001CBE54 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB6B7B331CAE38CA001CBE54 /* Images.xcassets */; };
 		EB6B7B371CAE38CA001CBE54 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = EB6B7B351CAE38CA001CBE54 /* LaunchScreen.xib */; };
 		EB6B7B431CAE38CA001CBE54 /* GrapherTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6B7B421CAE38CA001CBE54 /* GrapherTests.swift */; };
+		EB6B7B4F1CAE3A56001CBE54 /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6B7B4E1CAE3A56001CBE54 /* GraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		EB6B7B3C1CAE38CA001CBE54 /* GrapherTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GrapherTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB6B7B411CAE38CA001CBE54 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EB6B7B421CAE38CA001CBE54 /* GrapherTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrapherTests.swift; sourceTree = "<group>"; };
+		EB6B7B4E1CAE3A56001CBE54 /* GraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 			children = (
 				EB6B7B2C1CAE38CA001CBE54 /* AppDelegate.swift */,
 				EB6B7B2E1CAE38CA001CBE54 /* ViewController.swift */,
+				EB6B7B4E1CAE3A56001CBE54 /* GraphView.swift */,
 				EB6B7B301CAE38CA001CBE54 /* Main.storyboard */,
 				EB6B7B331CAE38CA001CBE54 /* Images.xcassets */,
 				EB6B7B351CAE38CA001CBE54 /* LaunchScreen.xib */,
@@ -156,7 +159,8 @@
 		EB6B7B1F1CAE38CA001CBE54 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0620;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Kendall Lui";
 				TargetAttributes = {
 					EB6B7B261CAE38CA001CBE54 = {
@@ -214,6 +218,7 @@
 			files = (
 				EB6B7B2F1CAE38CA001CBE54 /* ViewController.swift in Sources */,
 				EB6B7B2D1CAE38CA001CBE54 /* AppDelegate.swift in Sources */,
+				EB6B7B4F1CAE3A56001CBE54 /* GraphView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +280,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -289,7 +295,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -326,7 +332,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -340,6 +346,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Grapher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.thekendall.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -350,6 +357,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Grapher/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.thekendall.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -368,6 +376,7 @@
 				);
 				INFOPLIST_FILE = GrapherTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.thekendall.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Grapher.app/Grapher";
 			};
@@ -383,6 +392,7 @@
 				);
 				INFOPLIST_FILE = GrapherTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.thekendall.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Grapher.app/Grapher";
 			};
@@ -407,6 +417,7 @@
 				EB6B7B481CAE38CA001CBE54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB6B7B491CAE38CA001CBE54 /* Build configuration list for PBXNativeTarget "GrapherTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +426,7 @@
 				EB6B7B4B1CAE38CA001CBE54 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
