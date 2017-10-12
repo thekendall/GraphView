@@ -11,7 +11,7 @@ import UIKit
 
 class GraphView: UIView {
     
-    private struct PlotData {
+    fileprivate struct PlotData {
         var coordinates:[[Double]]
         var path:UIBezierPath
         var color: (Float,Float,Float)
@@ -21,11 +21,11 @@ class GraphView: UIView {
     // Drawing setting
     var axesStroke: CGFloat = 1 { didSet { setNeedsDisplay() } }
     @IBInspectable
-    var axes_color: UIColor = UIColor.blueColor() { didSet { setNeedsDisplay() } }
+    var axes_color: UIColor = UIColor.blue { didSet { setNeedsDisplay() } }
     @IBInspectable
     var margin:Double = 20.0 { didSet { setNeedsDisplay() } }
     @IBInspectable
-    var plot_color:UIColor = UIColor.redColor() { didSet { setNeedsDisplay() } }
+    var plot_color:UIColor = UIColor.red { didSet { setNeedsDisplay() } }
     @IBInspectable
     var showAxes:Bool = true { didSet { setNeedsDisplay() } }
     @IBInspectable
@@ -36,17 +36,17 @@ class GraphView: UIView {
     
     var autoscaleAxis = true;
     
-    private var plots = [Int: PlotData]()
+    fileprivate var plots = [Int: PlotData]()
     
     // Canvas Data
-    private var screenWidth: CGFloat
+    fileprivate var screenWidth: CGFloat
         {
         get {
             return bounds.size.width
         }
     }
     
-    private var screenHeight: CGFloat
+    fileprivate var screenHeight: CGFloat
         {
         get {
             return bounds.size.height
@@ -79,7 +79,7 @@ class GraphView: UIView {
     
     //Plot with default values
     
-    override func drawRect(rect: CGRect)
+    override func draw(_ rect: CGRect)
     {
         
         /*
@@ -117,7 +117,7 @@ class GraphView: UIView {
         
         setNeedsDisplay()
     }
-    func shiftPlots(x: Double, y: Double)
+    func shiftPlots(_ x: Double, y: Double)
     {
         let xScale = Double ((screenWidth - CGFloat(margin*2)) / CGFloat(abs(x_max - x_min)))
         let yScale = Double((screenHeight - CGFloat(margin*2)) / CGFloat(abs(y_max - y_min)))
@@ -125,7 +125,7 @@ class GraphView: UIView {
         yShift += CGFloat(yScale * y);
         for (index, _) in plots
         {
-            plots[index]!.path.applyTransform(CGAffineTransformMakeTranslation(CGFloat(xScale * x), CGFloat(yScale * y)));
+            plots[index]!.path.apply(CGAffineTransform(translationX: CGFloat(xScale * x), y: CGFloat(yScale * y)));
         }
         
         setNeedsDisplay()
@@ -135,7 +135,7 @@ class GraphView: UIView {
     {
         for (index, _) in plots
         {
-            plots[index]!.path.applyTransform(CGAffineTransformMakeTranslation(-xShift, -yShift));
+            plots[index]!.path.apply(CGAffineTransform(translationX: -xShift, y: -yShift));
         }
 
         xShift = 0.0;
@@ -143,14 +143,14 @@ class GraphView: UIView {
         setNeedsDisplay();
     }
     
-    func scale(x: Double, y: Double)
+    func scale(_ x: Double, y: Double)
     {
         let xScaled = CGFloat(x) * ((screenWidth - CGFloat(margin*2)) / CGFloat(abs(x_max - x_min)))
         let yScaled = CGFloat(y) * ((screenHeight - CGFloat(margin*2)) / CGFloat(abs(y_max - y_min)))
 
         for (index, _) in plots
         {
-            plots[index]!.path.applyTransform(CGAffineTransformMakeScale(xScaled, yScaled));
+            plots[index]!.path.apply(CGAffineTransform(scaleX: xScaled, y: yScaled));
         }
         setNeedsDisplay()
     }
@@ -159,25 +159,25 @@ class GraphView: UIView {
     { //maximize window
     }
     
-    func addPlot(x_coors x_coors: [Double], y_coors: [Double], color: (Float,Float,Float)) -> Int //Plot index for tracking
+    func addPlot(_ x_coors: [Double], y_coors: [Double], color: (Float,Float,Float)) -> Int //Plot index for tracking
     {
         let index = plots.count
         if(autoscaleAxis)
         {
-            if(x_min > floor(x_coors.minElement()!)) {
-                x_min = floor(x_coors.minElement()!)
+            if(x_min > floor(x_coors.min()!)) {
+                x_min = floor(x_coors.min()!)
             }
-            if(x_max < ceil(x_coors.maxElement()!))
+            if(x_max < ceil(x_coors.max()!))
             {
-                x_max = ceil(x_coors.maxElement()!)
+                x_max = ceil(x_coors.max()!)
             }
             
-            if(y_min > floor(y_coors.minElement()!)) {
-                y_min = floor(y_coors.minElement()!)
+            if(y_min > floor(y_coors.min()!)) {
+                y_min = floor(y_coors.min()!)
             }
-            if(y_max < ceil(y_coors.maxElement()!))
+            if(y_max < ceil(y_coors.max()!))
             {
-                y_max = ceil(y_coors.maxElement()!)
+                y_max = ceil(y_coors.max()!)
             }
             
         }
@@ -186,12 +186,12 @@ class GraphView: UIView {
         return index
     }
     
-    func removePlot(index: Int)
+    func removePlot(_ index: Int)
     {
-        plots.removeValueForKey(index)
+        plots.removeValue(forKey: index)
     }
     
-    func addPointToPlotAtIndex(index: Int, x: Double, y:Double)
+    func addPointToPlotAtIndex(_ index: Int, x: Double, y:Double)
     {
         plots[index]?.coordinates[0].append(x)
         plots[index]?.coordinates[1].append(y)
@@ -213,11 +213,11 @@ class GraphView: UIView {
                 y_max = ceil(x)
             }
         }
-        plots[index]?.path.addLineToPoint(getPlotCoordinates(x, y: y))
+        plots[index]?.path.addLine(to: getPlotCoordinates(x, y: y))
         setNeedsDisplay()
     }
     
-    func replacePlotAtIndex(index: Int, x: [Double], y:[Double])
+    func replacePlotAtIndex(_ index: Int, x: [Double], y:[Double])
     {
         plots[index]?.coordinates = [x,y]
         
@@ -225,58 +225,60 @@ class GraphView: UIView {
     }
     
     
-    private func bezierPathForAxes() -> UIBezierPath
+    fileprivate func bezierPathForAxes() -> UIBezierPath
     {
         let path = UIBezierPath()
         if(x_min > 0 || x_max < 0)
         {
-            path.moveToPoint(getPlotCoordinates(x_min, y: y_min))
-            path.addLineToPoint(getPlotCoordinates(x_min, y: y_max))
+            path.move(to: getPlotCoordinates(x_min, y: y_min))
+            path.addLine(to: getPlotCoordinates(x_min, y: y_max))
         } else {
-            path.moveToPoint(getPlotCoordinates(0, y: y_min))
-            path.addLineToPoint(getPlotCoordinates(0, y: y_max))
+            path.move(to: getPlotCoordinates(0, y: y_min))
+            path.addLine(to: getPlotCoordinates(0, y: y_max))
         }
         
         if(y_min > 0 || y_max < 0)
         {
-            path.moveToPoint(getPlotCoordinates(x_min, y: y_min))
-            path.addLineToPoint(getPlotCoordinates(x_max, y: y_min))
+            path.move(to: getPlotCoordinates(x_min, y: y_min))
+            path.addLine(to: getPlotCoordinates(x_max, y: y_min))
         } else {
-            path.moveToPoint(getPlotCoordinates(x_min, y: 0))
-            path.addLineToPoint(getPlotCoordinates(x_max, y: 0))
+            path.move(to: getPlotCoordinates(x_min, y: 0))
+            path.addLine(to: getPlotCoordinates(x_max, y: 0))
         }
         
         return path
     }
     
-    private func drawAxesLabels()
+    fileprivate func drawAxesLabels()
     {
-        for(var i = x_min; i <= x_max; i+=x_increment)
+        //for(var i = x_min; i <= x_max; i+=x_increment)
+        for i in stride(from: x_min, through: x_max, by:x_increment)
         {
             let label = UILabel(frame: bounds)
             label.center = getPlotCoordinates(i - 0.2, y: -0.2)
-            label.textAlignment = NSTextAlignment.Center
+            label.textAlignment = NSTextAlignment.center
             label.text = String(format: "%.1f", i)
-            label.font = label.font.fontWithSize(5.0)
+            label.font = label.font.withSize(5.0)
             label.textColor = axes_color
             self.addSubview(label)
             
         }
-        for(var i = y_min; i <= y_max; i+=y_increment)
+
+        for i in stride(from: y_min, through: y_max, by:y_increment)
         {
             let label = UILabel(frame: bounds)
             label.center = getPlotCoordinates(0, y: i)
             label.center.x -= CGFloat(margin/2)
-            label.textAlignment = NSTextAlignment.Center
+            label.textAlignment = NSTextAlignment.center
             label.text = String(format: "%.1f", i)
-            label.font = label.font.fontWithSize(5.0)
+            label.font = label.font.withSize(5.0)
             label.textColor = axes_color
             self.addSubview(label)
         }
         
     }
     
-    private func getPlotCoordinates(x: Double, y: Double) -> CGPoint
+    fileprivate func getPlotCoordinates(_ x: Double, y: Double) -> CGPoint
     {
         let xScale = (screenWidth - CGFloat(margin*2)) / CGFloat(abs(x_max - x_min))
         let yScale = (screenHeight - CGFloat(margin*2)) / CGFloat(abs(y_max - y_min))
@@ -290,13 +292,13 @@ class GraphView: UIView {
         return CGPoint(x: x_coor, y: y_coor)
     }
     
-    private func bezierPathForPlot(x_coors :[Double], y_coors: [Double]) -> UIBezierPath
+    fileprivate func bezierPathForPlot(_ x_coors :[Double], y_coors: [Double]) -> UIBezierPath
     {
         let path = UIBezierPath()
-        path.moveToPoint(getPlotCoordinates(x_coors[0], y: y_coors[0]))
-        for(var i = 1; i < x_coors.count; i++ )
+        path.move(to: getPlotCoordinates(x_coors[0], y: y_coors[0]))
+        for i in 1 ..< x_coors.count
         {
-            path.addLineToPoint(getPlotCoordinates(x_coors[i], y: y_coors[i]))
+            path.addLine(to: getPlotCoordinates(x_coors[i], y: y_coors[i]))
         }
         return path;
     }
