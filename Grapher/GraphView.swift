@@ -108,14 +108,16 @@ class GraphView: UIView {
     
     func replot()
     {
-        for (index, plot) in plots
-        {
-            let path = bezierPathForPlot(plot.coordinates[0], y_coors: plot.coordinates[1])
-            let newPlot = PlotData(coordinates: plot.coordinates, path: path, color: plot.color)
-            plots.updateValue(newPlot, forKey: index)
+        let queue = DispatchQueue(label: "io.thekendall.replot");
+        queue.async {
+            for (index, plot) in self.plots
+            {
+                let path = self.bezierPathForPlot(plot.coordinates[0], y_coors: plot.coordinates[1])
+                let newPlot = PlotData(coordinates: plot.coordinates, path: path, color: plot.color)
+                self.plots.updateValue(newPlot, forKey: index)
+            }
+            self.setNeedsDisplay()
         }
-        
-        setNeedsDisplay()
     }
     func shiftPlots(_ x: Double, y: Double)
     {
